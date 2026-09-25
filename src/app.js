@@ -1,10 +1,14 @@
 const express = require("express");
 const cors = require("cors");
 
+const authRouter = require("../routes/auth");
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.use("/", authRouter);
 
 // 라우터 연결
 app.get("/", (req, res) => {
