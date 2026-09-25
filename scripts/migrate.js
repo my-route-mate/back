@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const pool = require("../src/config/db"); // mysql 패키지 + promisify 적용된 pool
+const pool = require("../src/config/db");
 
 async function migrate() {
   // 실행 기록 테이블
@@ -35,7 +35,7 @@ async function migrate() {
       console.log(`Executed: ${file}`);
     } catch (err) {
       console.error(`Failed on ${file}:`, err.message);
-      process.exit(1); // 하나라도 실패하면 중단 (뒤 파일이 앞 파일에 의존할 수 있어서)
+      process.exit(1);
     }
   }
 
