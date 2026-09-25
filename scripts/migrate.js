@@ -3,7 +3,7 @@ const path = require("path");
 const pool = require("../src/config/db"); // mysql 패키지 + promisify 적용된 pool
 
 async function migrate() {
-  // 실행 기록을 남길 테이블
+  // 실행 기록 테이블
   await pool.query(`
     CREATE TABLE IF NOT EXISTS migrations (
       id INT AUTO_INCREMENT PRIMARY KEY,
@@ -12,7 +12,6 @@ async function migrate() {
     )
   `);
 
-  // mysql 패키지는 [rows] 아니라 rows 자체를 반환 (mysql2와 차이점)
   const executed = await pool.query("SELECT filename FROM migrations");
   const executedNames = executed.map((row) => row.filename);
 
